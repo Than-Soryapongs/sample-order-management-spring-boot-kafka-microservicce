@@ -6,6 +6,10 @@ jobs:
   build:
     docker:
       - image: cimg/openjdk:17.0
+      - image: cimg/mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: order_db
 
     environment:
       JVM_OPTS: -Xmx3200m
@@ -25,6 +29,10 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Wait for MySQL
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
       - run: mvn test -B
 
