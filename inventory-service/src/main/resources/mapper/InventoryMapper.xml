@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sample.inventory_service.mapper.InventoryMapper">
+
+    <select id="findByProductId" resultType="com.sample.inventory_service.model.Inventory">
+        SELECT id, product_id, quantity, updated_at
+        FROM inventory
+        WHERE product_id = #{productId}
+    </select>
+
+    <update id="deductStock">
+        UPDATE inventory
+        SET quantity = quantity - #{quantity}
+        WHERE product_id = #{productId}
+        AND quantity >= #{quantity}
+    </update>
+
+</mapper>

@@ -1,0 +1,20 @@
+package com.sample.inventory_service.model;
+
+public class OrderEvent {
+    private long orderId;
+    private String productId;
+    private int quantity;
+    private String status;
+
+    public long getOrderId() { return orderId; }
+    public void setOrderId(long orderId) { this.orderId = orderId; }
+
+    public String getProductId()  {return productId;}
+    public void setProductId(String productId) { this.productId = productId;}
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
